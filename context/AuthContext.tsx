@@ -35,11 +35,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const signIn = async (username: string, password: string) => {
         setIsLoading(true);
         try {
-            const userData = await apiLogin({ username, password });
+            const response = await apiLogin({ username, password });
+            const userData = response.user || response; // Handle both old and new response formats
             setUser(userData);
             router.replace('/(tabs)');
         } catch (error: any) {
-            alert(error.response?.data?.error || 'Login failed');
+            alert(error.response?.data?.message || error.response?.data?.error || 'Login failed');
         } finally {
             setIsLoading(false);
         }

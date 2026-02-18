@@ -11,10 +11,12 @@ export default function SettingsScreen() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.avatar}>
-          <Text style={styles.avatarText}>{user.username.charAt(0).toUpperCase()}</Text>
+          <Text style={styles.avatarText}>
+            {user.username ? user.username.charAt(0).toUpperCase() : 'U'}
+          </Text>
         </View>
-        <Text style={styles.name}>{user.username}</Text>
-        <Text style={styles.role}>{user.role}</Text>
+        <Text style={styles.name}>{user.username || 'User'}</Text>
+        <Text style={styles.role}>{user.role || 'Employee'}</Text>
       </View>
 
       <View style={styles.section}>
